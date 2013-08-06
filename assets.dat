@@ -1,0 +1,28 @@
+# Basic Assets list
+
+TileWidth 16
+TileHeight 16 
+
+# Load images like so:
+# TEXTURE <engine name> <path>
+
+# Load images from a PAK like so:
+# PAKTEXTURE <engine name> <path>
+
+# Load decal images like so:
+# DECAL <engine name> <path>
+# PAKDECAL
+
+# Sounds get loaded like this:
+# SOUND <name> <path>
+
+# And Music:
+# MUSIC <name> <path>
+
+# And Maps:
+# MAP <name> <path>
+
+# -- Make sure we load the game font
+PAKTEXTURE font_game font_game_strip96.png
+PAKTEXTURE font_display font_game_strip96.png
+

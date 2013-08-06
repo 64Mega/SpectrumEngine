@@ -1,0 +1,27 @@
+# Exile Config File
+# -----------------
+
+# Uncomment the next line for fullscreen
+#Fullscreen
+
+# Comment out the next two lines to turn Music and Sound off
+Music
+Sound
+
+# Comment out the next line to enable gamepad support
+Gamepad
+
+# Set the music and sound volume here
+MusicVolume 177
+SoundVolume 121
+
+# Gamma level AKA the brightness. 100 is full-bright, 80 is the default. Adjust at will.
+GammaLevel 100
+
+# Select the asset-list to use.
+AssetList ./assets.dat
+
+# PAK file to use (or use core.pak)
+AssetPack ./core.pak
+
+# End of config ---

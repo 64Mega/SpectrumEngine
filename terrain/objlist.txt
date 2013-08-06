@@ -1,0 +1,30 @@
+// Maximum of 512 objects
+// Object definition works like this:
+// <INDEX> <NAME> <SPRITE_PATH>
+
+0 ./objs/playerstart.png 0 :Player Start
+1 ./objs/spr_gargoyle.png 2003 :Gargoyle
+2 ./objs/grunt_stand.png 2000 :Grunt
+3 ./objs/flask_hp.png 1010 :HP Flask
+4 ./objs/flask_mp.png 1011 :MP Flask
+5 ./objs/flask_boost_atkspeed.png 1011 :ATKSPEED Boost
+6 ./objs/flask_boost_atk.png 1014 :ATK Boost
+7 ./objs/flask_boost_def.png 1016 :DEF Boost
+8 ./objs/bottle_hp.png 1012 :HP Bottle
+9 ./objs/bottle_mp.png 1013 :MP Bottle
+10 ./objs/garmage.png 2004 :Gargoyle Mage
+11 ./objs/spr_rune_icebolt.png 1004 :Icebolt Rune
+12 ./objs/spr_rune_darkbolt.png 1005 :Darkbolt Rune
+13 ./objs/spr_rune_healing.png 1007 :Healing Rune
+14 ./objs/spr_rune_quicksilver.png 1009 :Quicksilver Rune
+15 ./objs/spr_rune_ironskin.png 1008 :Ironskin Rune
+16 ./objs/goldkey.png 1000 :Gold Key
+17 ./objs/aberrant_stand.png 2005 :Aberrant
+18 ./objs/deathknight_stand.png 2006 :Death Knight
+19 ./objs/grunt2_stand.png 2002 :Hoodie Grunt
+20 ./objs/grunt3_stand.png 2001 :Ninja Grunt
+21 ./objs/goblin.png 2000 :Don't even think about it.
+22 ./objs/spr_rune_litbolt.png 1006 :Yay new weapons =D
+23 ./objs/lightsource.png 23 :Light source (Point, white).
+
+// End

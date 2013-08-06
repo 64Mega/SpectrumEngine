@@ -1,0 +1,1 @@
+This PAK just contains the bare 'essentials' to a new game; namely, the game font.

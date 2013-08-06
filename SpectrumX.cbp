@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="SpectrumX" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug">
+				<Option output="./GameDebug" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/debug/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-w" />
+					<Add option="-g" />
+					<Add option="-fpermissive" />
+					<Add option="-DSFML_STATIC" />
+					<Add directory="headers/" />
+				</Compiler>
+				<Linker>
+					<Add option="-lglu32" />
+					<Add option="-lgme" />
+					<Add option="-lsfml-audio-s" />
+					<Add option="-lsfml-graphics-s" />
+					<Add option="-lsfml-window-s" />
+					<Add option="-lsfml-system-s" />
+					<Add option="-lsfml-main" />
+					<Add option="-lgcc_eh" />
+					<Add option="-static-libgcc" />
+					<Add option="-static-libstdc++" />
+					<Add library="C:\Dev\myinclude\libMIOLIB.a" />
+				</Linker>
+			</Target>
+			<Target title="Release">
+				<Option platforms="Windows;" />
+				<Option output="./Game" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/release" />
+				<Option type="0" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O3" />
+					<Add option="-O2" />
+					<Add option="-O1" />
+					<Add option="-O" />
+					<Add option="-pg" />
+					<Add option="-DSFML_STATIC" />
+					<Add directory="C:/Projects/Darkhold Engine/headers" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+					<Add option="-pg -lgmon" />
+					<Add option="-lglu32" />
+					<Add option="-lgme" />
+					<Add option="-lsfml-audio-s" />
+					<Add option="-lsfml-graphics-s" />
+					<Add option="-lsfml-window-s" />
+					<Add option="-lsfml-system-s" />
+					<Add option="-lsfml-main" />
+					<Add option="-lgcc_eh" />
+					<Add option="-static-libgcc" />
+					<Add option="-static-libstdc++" />
+					<Add library="C:\Dev\myinclude\libMIOLIB.a" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+			<Add directory="C:/Projects/Darkhold Engine/headers" />
+		</Compiler>
+		<Unit filename="headers/EmuStream.h" />
+		<Unit filename="headers/MPK2.h" />
+		<Unit filename="headers/billboard.h" />
+		<Unit filename="headers/common.h" />
+		<Unit filename="headers/config.h" />
+		<Unit filename="headers/icon.h" />
+		<Unit filename="headers/screen.h" />
+		<Unit filename="headers/screens/gamemenu.h" />
+		<Unit filename="headers/screens/mainmenu.h" />
+		<Unit filename="headers/screens/options.h" />
+		<Unit filename="headers/spectrum/engine/assets.h" />
+		<Unit filename="headers/spectrum/engine/engine.h" />
+		<Unit filename="headers/spectrum/engine/gameobject.h" />
+		<Unit filename="headers/spectrum/engine/mxlmap.h" />
+		<Unit filename="headers/spectrum/engine/rect.h" />
+		<Unit filename="headers/spectrum/engine/room.h" />
+		<Unit filename="headers/spectrum/engine/sprite.h" />
+		<Unit filename="headers/spectrum/engine/tileset.h" />
+		<Unit filename="headers/spectrum/exception.h" />
+		<Unit filename="headers/spectrum/object.h" />
+		<Unit filename="headers/spectrum/spectrum.h" />
+		<Unit filename="icon.rc">
+			<Option compilerVar="WINDRES" />
+		</Unit>
+		<Unit filename="source/EmuStream.cpp" />
+		<Unit filename="source/MPK2.cpp" />
+		<Unit filename="source/billboard.cpp" />
+		<Unit filename="source/config.cpp" />
+		<Unit filename="source/main.cpp" />
+		<Unit filename="source/mxmath.cpp" />
+		<Unit filename="source/screen.cpp" />
+		<Unit filename="source/screens/gamemenu.cpp" />
+		<Unit filename="source/screens/mainmenu.cpp" />
+		<Unit filename="source/screens/options.cpp" />
+		<Unit filename="source/spectrum/engine/assets.cpp" />
+		<Unit filename="source/spectrum/engine/engine.cpp" />
+		<Unit filename="source/spectrum/engine/gameobject.cpp" />
+		<Unit filename="source/spectrum/engine/mxlmap.cpp" />
+		<Unit filename="source/spectrum/engine/rect.cpp" />
+		<Unit filename="source/spectrum/engine/room.cpp" />
+		<Unit filename="source/spectrum/engine/sprite.cpp" />
+		<Unit filename="source/spectrum/engine/tileset.cpp" />
+		<Unit filename="source/spectrum/exception.cpp" />
+		<Unit filename="source/spectrum/object.cpp" />
+		<Extensions>
+			<code_completion />
+			<envvars />
+			<debugger />
+			<lib_finder disable_auto="1" />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>

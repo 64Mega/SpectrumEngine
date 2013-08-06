@@ -1,0 +1,9 @@
+HITAGS:
+
+HI (5) == Split Door. Vert.
+HI (6) == Split Door. Horizontal.
+
+For the Doors, if Lo is 0, it can be opened normally. Negative number requires a key of that index (-1 == Key 1, -2 == Key 2, etc). Positive number means it can only be opened by being triggered by a trigger event of that number.
+
+
+

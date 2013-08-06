@@ -1,0 +1,1 @@
+#define IDI_ICON_GAME 101
