@@ -19,7 +19,7 @@ using namespace std;
 #include <gl/gl.h>
 #include <gl/glu.h>
 
-Engine::Engine():()
+Engine::Engine():Object()
 {
     this->SetName("Engine");
     iwidth = 640;
@@ -98,7 +98,7 @@ void Engine::reinit()
     glLoadIdentity();
 }
 
-Engine::Engine(int width, int height, bool fullscreen):()
+Engine::Engine(int width, int height, bool fullscreen):Object()
 {
     this->SetName("Engine");
 

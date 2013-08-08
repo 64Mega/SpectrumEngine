@@ -150,13 +150,13 @@ void MPK2::Write(string name)
         return;
     }
 
-    fout = fopen(nt_names[i].c_str(),"wb");
+    fout = fopen(nt_names[index].c_str(),"wb");
     if(!fout)
     {
-        printf("Couldn't write %s!\n",nt_names[i].c_str());
+        printf("Couldn't write %s!\n",nt_names[index].c_str());
         return;
     }
-    fwrite(GetDataPtr(nt_names[i]),sizeof(char),GetLength(nt_names[i]),fout);
+    fwrite(GetDataPtr(nt_names[index]),sizeof(char),GetLength(nt_names[index]),fout);
 
     fclose(fout);
 }

@@ -20,7 +20,7 @@ using namespace std;
 
 #include <gl/gl.h>
 
-GameObject::GameObject():()
+GameObject::GameObject():Object()
 {
     SetName("GameObject");
     current_sprite = NULL;
@@ -32,7 +32,7 @@ GameObject::GameObject():()
     this->can_collide = false;
 }
 
-GameObject::GameObject(const GameObject& C):()
+GameObject::GameObject(const GameObject& C):Object()
 {
     SetName("GameObject");
     this->current_sprite = C.current_sprite;

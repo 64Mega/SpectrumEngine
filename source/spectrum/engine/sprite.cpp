@@ -14,7 +14,7 @@ using namespace std;
 
 #include <gl/gl.h>
 
-Sprite::Sprite():()
+Sprite::Sprite():Object()
 {
     // Protected method. Not the desired interface to Sprite.
     SetName("Sprite");
@@ -41,7 +41,7 @@ Sprite::Sprite():()
     flip_y = false;
 }
 
-Sprite::Sprite(std::string assetName, int sub_images):()
+Sprite::Sprite(std::string assetName, int sub_images):Object()
 {
     // Public method. The intended one.
     SetName("Sprite");
@@ -69,7 +69,7 @@ Sprite::Sprite(std::string assetName, int sub_images):()
     flip_y = false;
 }
 
-Sprite::Sprite(const Sprite& C):()
+Sprite::Sprite(const Sprite& C):Object()
 {
     this->alpha = C.alpha;
     this->BBox = C.BBox;
@@ -88,7 +88,7 @@ Sprite::Sprite(const Sprite& C):()
     this->flip_x = C.flip_x;
     this->flip_y = C.flip_y;
 
-    SetName(C.GetName());
+    SetName(((Object)C).GetName());
     Sprite::ClipPlane = Rect(0,0,640,480);
 }
 

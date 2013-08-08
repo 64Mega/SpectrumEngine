@@ -14,7 +14,7 @@ using namespace std;
 #include "spectrum/engine/gameobject.h"
 #include "spectrum/engine/room.h"
 
-Room::Room():()
+Room::Room():Object()
 {
     obj_list.clear();
     map = NULL;
@@ -23,8 +23,8 @@ Room::Room():()
     static_bg = 0;
 }
 
-static int Room::f_width = 0;
-static int Room::f_height = 0;
+int Room::f_width = 0;
+int Room::f_height = 0;
 
 //class obj_Player;
 

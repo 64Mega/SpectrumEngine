@@ -8,7 +8,7 @@
 
 using namespace std;
 
-Tileset::Tileset(std::string assetName):()
+Tileset::Tileset(std::string assetName):Object()
 {
     SetName("Tileset");
     width = 0;

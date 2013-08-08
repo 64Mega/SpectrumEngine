@@ -1,0 +1,13 @@
+# Files to ignore
+
+*.exe
+*.obj
+*.depend
+*.layout
+*.log
+log.txt
+
+/terrain
+/obj
+/DebugObj
+/assets

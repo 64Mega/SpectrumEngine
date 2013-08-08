@@ -15,7 +15,7 @@ vector<string> split(string, char);
 
 Rect MXLMap::ClipPlane = Rect(0,0,640,480);
 
-MXLMap::MXLMap():()
+MXLMap::MXLMap():Object()
 {
     width = 0;
     height = 0;

@@ -47,7 +47,7 @@ void t_Config::Load()
 
     // Parse config
 
-    for(int i = 0; i < lines.size(); i++)
+    for(unsigned int i = 0; i < lines.size(); i++)
     {
         if(lines[i].empty())continue;
         vector<string> spl = MIO::split(lines[i],' ');
@@ -119,7 +119,7 @@ void t_Config::Load()
         }
     }
 
-    fclose(fin);
+    fin.close();
 }
 
 void t_Config::Write()
