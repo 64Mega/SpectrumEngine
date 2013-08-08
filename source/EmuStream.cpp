@@ -141,6 +141,8 @@ bool emuStream::SaveBuffer(std::string filename)
     }
 
     fclose(fp);
+
+    return true;
 }
 
 bool emuStream::onGetData(Chunk& Data)

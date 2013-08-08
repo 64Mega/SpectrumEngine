@@ -39,14 +39,14 @@ int main(int argc, char** argv)
     stateMainMenu = true;
     stateGameMenu = false;
 
+    bool kbEscape = false;
+
     global_config.Load();
 
     Assets::SetMusicVolume(global_config.music_volume);
     Assets::SetSoundVolume(global_config.sound_volume);
     if(global_config.music == false)Assets::SetMusicVolume(0);
     if(global_config.sound == false)Assets::SetSoundVolume(0);
-
-    bool fullscreen = false;
 
     Engine* engine;
     engine = new Engine(global_config.width,global_config.height,global_config.fullscreen);
@@ -65,21 +65,6 @@ int main(int argc, char** argv)
 
     bool gamestarted = false;
 
-    float balpha = 1.0F;
-    int fade_phase = 1;
-
-    int menuSelect = 0;
-    bool inOptions = false;
-    bool inHelp = false;
-    int helpPage = 0;
-
-    bool kbDown = false;
-    bool kbLeft = false;
-    bool kbRight = false;
-    bool kbUp = false;
-    bool kbEnter = false;
-    bool kbEscape = false;
-
     Assets::svolume = global_config.sound_volume;
     Assets::mvolume = global_config.music_volume;
     Assets::music = global_config.music;
@@ -87,7 +72,6 @@ int main(int argc, char** argv)
 
     cout <<"[SYSTEM] Game started." << endl;
 
-    bool playingCredMusic = false;
     engine->ff_phase = 1;
     engine->ff_alpha = 1.0F;
 
@@ -107,7 +91,6 @@ int main(int argc, char** argv)
         if(gamestarted == false)
         {
             // Draw the title screen
-            //bg_titlescreen.Draw(0,0);
 
             if(engine->ff_phase != 0)engine->Fade();
 
@@ -133,7 +116,6 @@ int main(int argc, char** argv)
             if(sf::Keyboard::isKeyPressed(sf::Keyboard::Space) || sf::Joystick::isButtonPressed(0,0))
             {
                 gamestarted = true;
-                kbEnter = true;
             }
 
             if(sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
@@ -160,8 +142,6 @@ int main(int argc, char** argv)
         {
             if(!kbEscape)
             {
-                //stateGameMenu = true; // Enter in-game menu
-                //menuSelect = 0;
                 screen_list.push_back(new ScreenGameMenu());
             }
 
