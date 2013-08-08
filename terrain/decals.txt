@@ -1,4 +1,0 @@
-// Decal sprite definitions
-
-1 ./../bb_decals/decal_switch_off.png :Switch (OFF)
-2 ./../bb_decals/decal_switch_on.png :Switch (ON)

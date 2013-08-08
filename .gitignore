@@ -1,6 +1,8 @@
 # Files to ignore
 
 *.exe
+*.dll
+*.so
 *.obj
 *.depend
 *.layout
@@ -11,3 +13,5 @@ log.txt
 /obj
 /DebugObj
 /assets
+
+
