@@ -284,7 +284,7 @@ void Engine::Render()
     // Draw all messages in the message queue
     if(message_queue.size() > 0)
     {
-        for(int i = 0; i < message_queue.size(); i++)
+        for(unsigned int i = 0; i < message_queue.size(); i++)
         {
             string ts = message_queue[i].message;
             int l = ts.length();
@@ -307,7 +307,7 @@ void Engine::Render()
     // Draw fade effect
     go2DX();
     glColor4f(0.0F,0.0F,0.0F,ff_alpha);
-    glBindTexture(GL_TEXTURE_2D,NULL);
+    glBindTexture(GL_TEXTURE_2D,0);
     glBegin(GL_QUADS);
         glVertex2f(0,0);
         glVertex2f(320,0);
@@ -464,17 +464,12 @@ void Engine::STMessageStep()
     if(st_lifetime > 0)
     {
         st_lifetime--;
-        float a = st_alpha;
-        if(st_lifetime < 10)a = st_lifetime/10.0F;
+
         int l = st_message.length();
         int ofx = (l/2)*8;
         Sprite* fnt_disp = new Sprite("font_game",96);
             for(int k = 0; k < l; k++)
             {
-
-                int tt = st_message[k];
-                int to = 0;
-                //if(tt == 'p' || tt == 'q' || tt == 'y' || tt == 'g') to = 2;
                 int width = 8;
                 fnt_disp->SetFrame(st_message[k]-32);
 

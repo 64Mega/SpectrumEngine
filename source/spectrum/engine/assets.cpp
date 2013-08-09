@@ -66,7 +66,7 @@ void Assets::Destroy()
     }
 
     char isc[4] = {' ',' ',' ','\0'};
-    sprintf(isc,"%d\0",j);
+    sprintf(isc,"%d",j);
     GameLog::Write("ASSETS","Removed " + string(isc) + " images from memory...");
 
     typedef vector<GameObject*>::iterator iter2;
@@ -82,7 +82,7 @@ void Assets::Destroy()
     }
 
     char iso[4] = {' ',' ',' ','\0'};
-    sprintf(iso,"%d\0",j);
+    sprintf(iso,"%d",j);
     GameLog::Write("ASSETS","Removed " + string(iso) + " objects from memory...");
 
     typedef vector<sf::Sound*>::iterator iter3;
@@ -96,7 +96,7 @@ void Assets::Destroy()
     }
 
     char iss[4] = {' ',' ',' ','\0'};
-    sprintf(iss,"%d\0",j);
+    sprintf(iss,"%d",j);
     GameLog::Write("ASSETS","Removed " + string(iss) + " sounds from memory...");
 
     typedef vector<sf::SoundBuffer*>::iterator iter4;
@@ -129,7 +129,7 @@ void Assets::Destroy()
 
 std::vector<std::string> Assets::nt_levels;
 
-std::string Assets::GetLevel(int idex)
+std::string Assets::GetLevel(unsigned int idex)
 {
     if(idex < nt_levels.size())return nt_levels[idex];
     else return nt_levels[0];
@@ -142,7 +142,7 @@ void Assets::AddLevel(std::string lname)
 
 void Assets::AddImage(std::string filename, std::string ident)
 {
-    for(int i = 0; i < nt_images.size(); i++)
+    for(unsigned int i = 0; i < nt_images.size(); i++)
     {
         if(nt_images[i] == ident)
         {
@@ -162,7 +162,7 @@ void Assets::AddImage(std::string filename, std::string ident)
 
 void Assets::AddImageX(std::string filename, std::string ident)
 {
-    for(int i = 0; i < nt_images.size(); i++)
+    for(unsigned int i = 0; i < nt_images.size(); i++)
     {
         if(nt_images[i] == ident)
         {
@@ -182,7 +182,7 @@ void Assets::AddImageX(std::string filename, std::string ident)
 
 void Assets::AddDecal(std::string filename, std::string ident)
 {
-    for(int i = 0; i < nt_decals.size(); i++)
+    for(unsigned int i = 0; i < nt_decals.size(); i++)
     {
         if(nt_decals[i] == ident)
         {
@@ -202,7 +202,7 @@ void Assets::AddDecal(std::string filename, std::string ident)
 
 void Assets::AddDecalX(std::string filename, std::string ident)
 {
-    for(int i = 0; i < nt_decals.size(); i++)
+    for(unsigned int i = 0; i < nt_decals.size(); i++)
     {
         if(nt_decals[i] == ident)
         {
@@ -243,7 +243,7 @@ int Assets::AddObject(GameObject* obj)
     Creates a copy instance of the object at the given index.
 */
 
-GameObject* Assets::Instantiate(int index, int x, int y)
+GameObject* Assets::Instantiate(unsigned int index, int x, int y)
 {
     try
     {
@@ -274,7 +274,7 @@ GameObject* Assets::Instantiate(int index, int x, int y)
 
 sf::Texture* Assets::GetImage(std::string name)
 {
-    for(int i = 0; i < nt_images.size(); i++)
+    for(unsigned int i = 0; i < nt_images.size(); i++)
     {
         if(nt_images[i] == name)return ls_images[i];
     }
@@ -282,7 +282,7 @@ sf::Texture* Assets::GetImage(std::string name)
     throw Exception(new Object, "No Image with name '" + name + "' found!");
 }
 
-sf::Texture* Assets::GetImageByIndex(int index)
+sf::Texture* Assets::GetImageByIndex(unsigned int index)
 {
     if(index < nt_images.size() && index >= 0)
     {
@@ -293,7 +293,7 @@ sf::Texture* Assets::GetImageByIndex(int index)
 
 sf::Texture* Assets::GetDecal(std::string name)
 {
-    for(int i = 0; i < nt_decals.size(); i++)
+    for(unsigned int i = 0; i < nt_decals.size(); i++)
     {
         if(nt_decals[i] == name)return ls_decals[i];
     }
@@ -301,7 +301,7 @@ sf::Texture* Assets::GetDecal(std::string name)
     throw Exception(new Object, "No Image with name '" + name + "' found!");
 }
 
-sf::Texture* Assets::GetDecalByIndex(int index)
+sf::Texture* Assets::GetDecalByIndex(unsigned int index)
 {
     if(index < nt_decals.size() && index >= 0)
     {
@@ -323,7 +323,7 @@ void Assets::LoadList(std::string fname)
 
     nt_levels.clear();
 
-    for(int i = 0; i < fname.size()-1; i++)
+    for(unsigned int i = 0; i < fname.size()-1; i++)
     {
         mcfn[i] = fname[i];
     }
@@ -345,7 +345,7 @@ void Assets::LoadList(std::string fname)
     }
 
     // Process lines
-    for(int i = 0; i < lines.size(); i++)
+    for(unsigned int i = 0; i < lines.size(); i++)
     {
         if(lines[i].size() > 0)
         {
@@ -461,7 +461,7 @@ void Assets::AddSound(std::string sname)
 bool Assets::music = false;
 bool Assets::sound = false;
 
-void Assets::PlaySound(int index)
+void Assets::PlaySound(unsigned int index)
 {
     if(!Assets::sound)return;
 
@@ -474,7 +474,7 @@ void Assets::PlaySound(int index)
     }
 }
 
-void Assets::PlaySound3D(int index, MXVector pos)
+void Assets::PlaySound3D(unsigned int index, MXVector pos)
 {
     if(!Assets::sound)return;
 
@@ -482,7 +482,7 @@ void Assets::PlaySound3D(int index, MXVector pos)
     ls_sounds[index]->setPosition(pos.x,pos.y,pos.z);
     ls_sounds[index]->setAttenuation(50.0F);
     ls_sounds[index]->setMinDistance(0.5F);
-    //ls_sounds[index]->SetRelativeToListener(true);
+
 
     // Only start playing the sound again if it's stopped.
 
@@ -495,7 +495,7 @@ void Assets::PlaySound3D(int index, MXVector pos)
     //ls_sounds[index]->SetPosition(0,0,0);
 }
 
-void Assets::PlayMusic(int index)
+void Assets::PlayMusic(unsigned int index)
 {
     if(index < 0)
     {

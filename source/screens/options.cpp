@@ -52,8 +52,8 @@ void ScreenOptions::update()
     Engine::Print(10,40,s_fullscreen_status);
     char smv[4] = {' ',' ',' ','\0'};
     char ssv[4] = {' ',' ',' ','\0'};
-    sprintf(smv,"%d\0",global_config.music_volume);
-    sprintf(ssv,"%d\0",global_config.sound_volume);
+    sprintf(smv,"%d",global_config.music_volume);
+    sprintf(ssv,"%d",global_config.sound_volume);
     string s_music_volume = "MUSIC VOLUME: " + string(smv);
     string s_sound_volume = "SOUND VOLUME: " + string(ssv);
 
@@ -62,7 +62,7 @@ void ScreenOptions::update()
 
 
     char sbv[4] = {' ',' ',' ','\0'};
-    sprintf(sbv,"%d\0",global_config.gamma);
+    sprintf(sbv,"%d",global_config.gamma);
     string s_gamma_level = "BRIGHTNESS: " + string(sbv);
     Engine::Print(10,90,s_gamma_level);
 
@@ -124,6 +124,9 @@ void ScreenOptions::update()
         break;
     case 7:
         ixof = 130;
+        break;
+    default:
+        ixof = 0;
         break;
     };
 

@@ -84,8 +84,6 @@ void MXLMap::Load(string filename)
 
     isLoaded = false;
 
-    bool grv4 = false;
-
     for(int i = 0; i < 16; i++)mapdata[i] = NULL;
 
     myTileset = NULL;
@@ -111,7 +109,7 @@ void MXLMap::Load(string filename)
 
     if(id == "GR4")
     {
-        grv4 = true;
+        // Do something useful here.
     }
 
     myTileset = new Tileset("terrain");

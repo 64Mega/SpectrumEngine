@@ -32,10 +32,10 @@ class Assets
         static void LoadAssets();
 
         static sf::Texture* GetImage(std::string name);
-        static sf::Texture* GetImageByIndex(int index);
+        static sf::Texture* GetImageByIndex(unsigned int index);
 
         static sf::Texture* GetDecal(std::string name);
-        static sf::Texture* GetDecalByIndex(int index);
+        static sf::Texture* GetDecalByIndex(unsigned int index);
 
         static void AddImage(std::string filename, std::string ident);
         static void AddImageX(std::string filename, std::string ident);
@@ -44,16 +44,16 @@ class Assets
         static void AddDecalX(std::string filename, std::string ident);
 
         static int AddObject(GameObject* obj);
-        static GameObject* Instantiate(int index, int x, int y);
-        static std::string GetLevel(int idex);
+        static GameObject* Instantiate(unsigned int index, int x, int y);
+        static std::string GetLevel(unsigned int idex);
         static void AddLevel(std::string lname);
 
         static void AddMusic(std::string mname);
         static void AddSound(std::string sname);
 
-        static void PlaySound(int index);
-        static void PlaySound3D(int index, MXVector pos); // Plays a faked positional sound.
-        static void PlayMusic(int index);
+        static void PlaySound(unsigned int index);
+        static void PlaySound3D(unsigned int index, MXVector pos); // Plays a faked positional sound.
+        static void PlayMusic(unsigned int index);
 
         static void SetMusicVolume(int vol);
         static void SetSoundVolume(int vol);

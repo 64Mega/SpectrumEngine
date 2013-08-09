@@ -87,10 +87,11 @@ void ScreenGameMenu::update()
     case 3:
         ixof = 50;
         break;
+    default:
+        ixof = 0;
+        break;
     };
 
-    //selector->Draw(ixof,80 + menuSelect*20);
-    //selector->Draw(320-ixof-28,80 + menuSelect*20);
     Engine::Print(0,ixof,">");
 
     engine->Render();

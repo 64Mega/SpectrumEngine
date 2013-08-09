@@ -30,7 +30,7 @@ MPK2::~MPK2()
 
 char* MPK2::GetDataPtr(string name)
 {
-    for(int i = 0; i < nt_names.size(); i++)
+    for(unsigned int i = 0; i < nt_names.size(); i++)
     {
         if(name == nt_names[i])
         {
@@ -92,7 +92,7 @@ void MPK2::LoadMPK(string fname)
 
     // Calculate total data size
     unsigned int paksize = 0;
-    for(int i = 0; i < nt_size.size(); i++)
+    for(unsigned int i = 0; i < nt_size.size(); i++)
     {
         nt_offset.push_back(paksize);
         paksize += nt_size[i];
@@ -104,7 +104,7 @@ void MPK2::LoadMPK(string fname)
 
     // Done.
     printf("Read all data... %d entries found...\n",nt_size.size());
-    for(int i = 0; i < nt_names.size(); i++)
+    for(unsigned int i = 0; i < nt_names.size(); i++)
     {
         printf("Found: %s\n",nt_names[i].c_str());
     }
@@ -116,7 +116,7 @@ void MPK2::LoadMPK(string fname)
 
 unsigned int MPK2::GetLength(string name)
 {
-    for(int i = 0; i < nt_names.size(); i++)
+    for(unsigned int i = 0; i < nt_names.size(); i++)
     {
         if(name == nt_names[i])
         {
@@ -133,8 +133,8 @@ void MPK2::Write(string name)
 
     // Writes the given file to an actual file. Used to write the 'unlockables'.
     bool found;
-    int index;
-    for(int i = 0; i < nt_names.size(); i++)
+    int index = 0;
+    for(unsigned int i = 0; i < nt_names.size(); i++)
     {
         if(nt_names[i] == name)
         {

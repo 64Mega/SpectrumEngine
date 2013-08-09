@@ -71,11 +71,11 @@
 		</Compiler>
 		<Unit filename="headers/EmuStream.h" />
 		<Unit filename="headers/MPK2.h" />
-		<Unit filename="headers/billboard.h" />
 		<Unit filename="headers/common.h" />
 		<Unit filename="headers/config.h" />
 		<Unit filename="headers/icon.h" />
 		<Unit filename="headers/mio.h" />
+		<Unit filename="headers/mxmath.h" />
 		<Unit filename="headers/screen.h" />
 		<Unit filename="headers/screens/gamemenu.h" />
 		<Unit filename="headers/screens/mainmenu.h" />
@@ -96,7 +96,6 @@
 		</Unit>
 		<Unit filename="source/EmuStream.cpp" />
 		<Unit filename="source/MPK2.cpp" />
-		<Unit filename="source/billboard.cpp" />
 		<Unit filename="source/config.cpp" />
 		<Unit filename="source/main.cpp" />
 		<Unit filename="source/mio.cpp" />

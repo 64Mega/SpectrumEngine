@@ -2,19 +2,19 @@
 	MXMath - Math Library for games and graphical applications
 	Copyright (c) 2012 - Daniel Lawrence (daniellawrence99 -at- yahoo -dot- com)
 	Version 0.1
+
+	-- A later note to self: Stupid copyright notices are stupid.
+	Solution: GPL2.
 */
 
 #include <math.h>
 #include <mxmath.h>
 
-double* MXVector::v()
+
+// NOTE: Don't use this.
+double* MXVector::v() const
 {
-    double vx[4];
-    vx[0] = x;
-    vx[1] = y;
-    vx[2] = z;
-    vx[3] = 0.0F;
-    return vx;
+    return 0;
 }
 
 MXVector::MXVector()
@@ -111,7 +111,7 @@ float MXVector::operator*(const MXVector& V) const
     return (x*V.x + y*V.y + z*V.z);
 }
 
-float& MXVector::operator*=(const MXVector& V)
+float MXVector::operator*=(const MXVector& V)
 {
     float ret = float(x*V.x + y*V.y + z*V.z);
     return ret;

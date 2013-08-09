@@ -19,7 +19,7 @@ class Rect
         bool ColRect(Rect& R);
         bool ColLine(int x1, int y1, int x2, int y2); // May not implement yet until I check the slope equation
 
-        Rect& operator=(const Rect& C);
+        Rect operator=(const Rect& C);
 };
 
 #endif

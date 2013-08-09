@@ -34,7 +34,7 @@ Rect::~Rect()
 
 }
 
-Rect& Rect::operator=(const Rect& C)
+Rect Rect::operator=(const Rect& C)
 {
     Rect R(this->x, this->y, this->w, this->h);
     return R;
