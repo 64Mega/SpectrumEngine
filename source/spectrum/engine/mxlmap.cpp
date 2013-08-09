@@ -1,6 +1,9 @@
 // MXLMap implementation
 // Partly ported from my former C# version of the loader
 
+// WARNING: This class is officially FUBAR and Deprecated.
+// --
+
 #include "spectrum/spectrum.h"
 
 using namespace std;
@@ -31,21 +34,14 @@ MXLMap::MXLMap():Object()
     tsetLabel = "Unknown";
 
     numtiles = 0;
-
-    light_r = NULL;
-    light_g = NULL;
-    light_b = NULL;
 }
 
 MXLMap::~MXLMap()
 {
     for(int i = 0; i < layers; i++)
     {
-        if(mapdata[i])delete[] mapdata[i];
+        if(mapdata[i])delete mapdata[i];
     }
-    if(light_r)delete[] light_r;
-    if(light_g)delete[] light_g;
-    if(light_b)delete[] light_b;
 
     if(myTileset)delete myTileset;
 }
@@ -81,10 +77,6 @@ typedef unsigned char byte;
 void MXLMap::Load(string filename)
 {
     if(mapdata)delete[] mapdata;
-    if(light_r)delete[] light_r;
-    if(light_g)delete[] light_g;
-    if(light_b)delete[] light_b;
-
     if(myTileset)delete myTileset;
 
     width = 0;
@@ -102,10 +94,6 @@ void MXLMap::Load(string filename)
     tsetLabel = "Unknown";
 
     numtiles = 0;
-
-    light_r = NULL;
-    light_g = NULL;
-    light_b = NULL;
 
     FILE* fp = fopen(filename.c_str(),"rb");
     if(!fp)
@@ -137,9 +125,8 @@ void MXLMap::Load(string filename)
     int m_height = ReadWord(fp);
     int m_layers = ReadWord(fp);
     int m_gap = ReadWord(fp);
-    //int m_numtiles = ReadWord(fp);
 
-    numtiles = m_width*m_height*m_layers; //(m_numtiles/7);
+    numtiles = m_width*m_height*m_layers;
     width = m_width;
     height = m_height;
     layers = m_layers;
@@ -150,8 +137,6 @@ void MXLMap::Load(string filename)
 
     // Read trigger zones first
     int trigcount = 0;
-    //int numtrigs = ReadByte(fp);
-    //cout << "TRIGGERS: " << numtrigs << endl;
     for(int i = 0; i < 256; i++)
     {
         int li, lx, ly, ll, lw, lh;
@@ -169,8 +154,6 @@ void MXLMap::Load(string filename)
         triggers[i].width = lw;
         triggers[i].height = lh;
 
-        //cout << "TRIGGER " << i << ": ID = " << triggers[i].id << endl;
-
         if(li > 0)trigcount++;
     }
 
@@ -179,12 +162,7 @@ void MXLMap::Load(string filename)
     for(int ili = 0; ili < layers; ili++)
     {
         // Initialize arrays
-        mapdata[ili] = new STile[numtiles];
-        STile* buffer = new STile[numtiles];
-
-        light_r = new float[numtiles];
-        light_g = new float[numtiles];
-        light_b = new float[numtiles];
+        mapdata[ili] = new vector<STile>(numtiles);
 
         // Read in the remaining data
         for(int i = 0; i < (numtiles/layers); i++)
@@ -210,33 +188,25 @@ void MXLMap::Load(string filename)
 
             // There. Now store it.
 
-            mapdata[ili][i].t = t;
-            mapdata[ili][i].l = l;
+            (*mapdata[ili])[i].t = t;
+            (*mapdata[ili])[i].l = l;
 
-            mapdata[ili][i].e = e;
-            mapdata[ili][i].o = o;
-            mapdata[ili][i].hi = hi;
-            mapdata[ili][i].lo = lo;
-            mapdata[ili][i].col = col;
-            mapdata[ili][i].d1 = d1;
-            mapdata[ili][i].di = di;
-            mapdata[ili][i].dt = dt;
-
-            light_r[i] = light_g[i] = light_b[i] = (mapdata[ili][i].l/10.0F);
-
-
-            //if(b > 0)
-            //{
-            //    //printf("DD: x(%d) y(%d) tm(%d) b(%d) c(%d)\n",x,y,tm,b,c);
-            //}
+            (*mapdata[ili])[i].e = e;
+            (*mapdata[ili])[i].o = o;
+            (*mapdata[ili])[i].hi = hi;
+            (*mapdata[ili])[i].lo = lo;
+            (*mapdata[ili])[i].col = col;
+            (*mapdata[ili])[i].d1 = d1;
+            (*mapdata[ili])[i].di = di;
+            (*mapdata[ili])[i].dt = dt;
         }
     }
     // Flip the entire array on it's Z axis, so the map is correctly aligned.
 
     //STile* buffer = new STile[numtiles];
-    float tlight_r[numtiles], tlight_b[numtiles], tlight_g[numtiles];
+    //float tlight_r[numtiles], tlight_b[numtiles], tlight_g[numtiles];
 
-    int ky = 0;
+    // int ky = 0;
     /*
     for(int iy = height-1; iy > 0; iy--)
     {
@@ -265,78 +235,16 @@ void MXLMap::Load(string filename)
     }*/
 
     fclose(fp);
-    //isLoaded = true;
-
-    // Load and process sector effectors
-    LoadEffectors();
 }
 
 void MXLMap::LoadEffectors()
 {
-    return;
-    // Load Sector Effectors and process them.
-    effectors.clear();
-
-    // Try to open file <levelname>.wch
-    vector<string> sname = MIO::split(mapName,'.');
-    string fname = string("./") + sname[0] + ".WCH";
-
-    FILE* fin = fopen(fname.c_str(),"rb");
-    if(!fin)
-    {
-        cout <<"Can't find " << fname << " for this level. Skipping." << endl;
-        return;
-    }
-
-    _finddata_t fdd;
-    _findfirst(fname.c_str(),&fdd);
-
-    long size = fdd.size;
-    char* buffer = new char[size];
-
-    fread(buffer, sizeof(char), size, fin);
-
-    // Transfer to a string
-    string sBuffer = string(buffer);
-
-    for(int i = 0; i < sBuffer.size(); i++)
-    {
-        switch(sBuffer[i])
-        {
-        case 1: // Player Start, 4 params (x, y, rotation, tag)
-            cout <<"Player Start effector" << endl;
-            i += 5;
-            break;
-        case 2: // Trigger Sector, (x1, y1, x2, y2, tag, target, act)
-            cout <<"Trigger Sector" << endl;
-            i += 8;
-            break;
-        }
-    }
-
-    fclose(fin);
-    delete[] buffer;
+    // REmove
 }
 
 void MXLMap::WriteEffectors()
 {
-    return;
-    // Writes to <levelname>.WCH
-    string fn = mapName;
-    fn += ".WCH";
-    FILE* fout = fopen(fn.c_str(),"wb");
-    if(!fout)
-    {
-        throw Exception(new Object, "[FATAL]: Couldn't open '" + fn + "' for writing!");
-    }
-    for(int i = 0; i < effectors.size(); i++)
-    {
-        SectorEffect* SE = (SectorEffect*)(effectors[i]);
-        string ss = SE->ToString();
-        fwrite(ss.c_str(),sizeof(char),ss.size(),fout);
-    }
-
-    fclose(fout);
+    // Remove
 }
 
 void MXLMap::clamp(int& i)
@@ -360,7 +268,7 @@ bool MXLMap::place_free(int x, int y, int z)
     int ty = floor(y/myTileset->GetHeight());
     int tt = (ty * width) + tx;
     if(tt > numtiles-1 || tt < 0)return true;
-    return !(mapdata[z][tt].col == 1 || mapdata[z][tt].col == 2 || mapdata[z][tt].col == 6 || mapdata[z][tt].col == 17);
+    return !((*mapdata[z])[tt].col == 1 || (*mapdata[z])[tt].col == 2 || (*mapdata[z])[tt].col == 6 || (*mapdata[z])[tt].col == 17);
 }
 
 bool MXLMap::place_free_ni(int x, int y, int z)
@@ -369,56 +277,15 @@ bool MXLMap::place_free_ni(int x, int y, int z)
     int ty = round((float)y/myTileset->GetHeight());
     int tt = (ty * width) + tx;
     if(tt > numtiles-1 || tt < 0)return true;
-    return !(mapdata[z][tt].col == 1 || mapdata[z][tt].col == 6 || (mapdata[z][tt].col == 2 && (mapdata[z][tt].hi == 5 || mapdata[z][tt].hi == 6)));
+    return !((*mapdata[z])[tt].col == 1 || (*mapdata[z])[tt].col == 6 || ((*mapdata[z])[tt].col == 2 && ((*mapdata[z])[tt].hi == 5 || (*mapdata[z])[tt].hi == 6)));
 }
 
 void MXLMap::Draw()
 {
-//    int w = 16;
-//    int h = 16;
-//
-//    Rect rr = MXLMap::ClipPlane;
-//
-//    int tvx = (rr.x / w)-1;
-//    int tvy = (rr.y / h)-1;
-//    int tvw = (rr.w / w)+2;
-//    int tvh = (rr.h / h)+2;
-//
-//    for(int iy = tvy; iy < tvy + tvh; iy++)
-//        for(int ix = tvx; ix < tvx + tvw; ix++)
-//        {
-//            if(ix > width || ix < 0 || iy > height || iy < 0)continue;
-//            int i = iy * width + ix;
-//            if (i > numtiles - 1)
-//            {
-//                i = (i % numtiles);
-//                if (i > numtiles - 1) i = numtiles - 1;
-//            }
-//            if (i < 0)
-//            {
-//                i = -i;
-//                i = numtiles - (i % numtiles);
-//            }
-//
-//            int x = ix * w;
-//            int y = iy * h;
-//            //x = x+(-rr.x);
-//            //y = y+(-rr.y);
-//
-//            if(i > numtiles - 1) i = numtiles - 1;
-//            //if(layer_back[i].t >= 0)myTileset->Draw(layer_back[i].t, x, y);
-//            //if(layer_mid[i].t >= 0)myTileset->Draw(layer_mid[i].t, x, y);
-//            //if(layer_front[i].t >= 0)myTileset->Draw(layer_front[i].t, x, y);
-//
-//        }
+    // Currently unused
 }
 
 void MXLMap::UpdateEffectors(int px, int py, bool use)
 {
-    for(int i = 0; i < effectors.size(); i++)
-    {
-        SectorEffect* SE = (SectorEffect*)(effectors[i]);
-        SE->Update(px,py,use,this);
-        SE = NULL;
-    }
+    // Remove
 }

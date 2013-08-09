@@ -1,10 +1,14 @@
 // Loads a MXL format map (Compiled MXT)
 
+// WARNING: This class is officially FUBAR and Deprecated.
+// --
+
 #ifndef MXLMAP_H
 #define MXLMAP_H
 
 #include "tileset.h"
-#include "../../sectoreffect.h"
+
+#define MAX_LAYERS 16
 
 typedef struct _TSTriggerZone
 {
@@ -61,7 +65,7 @@ class MXLMap: public Object
         int GetLayers(){return layers;}
         int GetGap(){return gap;}
 
-        int GetCode(int x, int y, int z){ return mapdata[z][y * width + x].lo; }
+        int GetCode(int x, int y, int z){ return (*mapdata[z])[y * width + x].lo; }
 
         void Load(string filename);
         void Draw();
@@ -70,10 +74,8 @@ class MXLMap: public Object
         bool place_free(int x, int y, int z); // Go figure. Takes closed doors into account.
         bool place_free_ni(int x, int y, int z); // Doesn't take Inviswalls into account.
 
-        STile* mapdata[16];
+        vector<STile>* mapdata[16];
         STrigZone triggers[256];
-
-        float *light_r, *light_g, *light_b;
 
         vector<Object*> effectors;
 

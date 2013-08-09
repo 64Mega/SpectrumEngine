@@ -19,8 +19,8 @@
 					<Add directory="headers/" />
 				</Compiler>
 				<Linker>
+					<Add option="-lGME-win32-d" />
 					<Add option="-lglu32" />
-					<Add option="-lgme" />
 					<Add option="-lsfml-audio-s" />
 					<Add option="-lsfml-graphics-s" />
 					<Add option="-lsfml-window-s" />
@@ -29,7 +29,7 @@
 					<Add option="-lgcc_eh" />
 					<Add option="-static-libgcc" />
 					<Add option="-static-libstdc++" />
-					<Add library="C:\Dev\myinclude\libMIOLIB.a" />
+					<Add directory="libs/" />
 				</Linker>
 			</Target>
 			<Target title="Release">
@@ -43,15 +43,17 @@
 					<Add option="-O2" />
 					<Add option="-O1" />
 					<Add option="-O" />
+					<Add option="-std=c++11" />
+					<Add option="-Wall" />
 					<Add option="-pg" />
 					<Add option="-DSFML_STATIC" />
-					<Add directory="C:/Projects/Darkhold Engine/headers" />
+					<Add directory="headers/" />
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
 					<Add option="-pg -lgmon" />
+					<Add option="-lGME-win32" />
 					<Add option="-lglu32" />
-					<Add option="-lgme" />
 					<Add option="-lsfml-audio-s" />
 					<Add option="-lsfml-graphics-s" />
 					<Add option="-lsfml-window-s" />
@@ -60,13 +62,12 @@
 					<Add option="-lgcc_eh" />
 					<Add option="-static-libgcc" />
 					<Add option="-static-libstdc++" />
-					<Add library="C:\Dev\myinclude\libMIOLIB.a" />
+					<Add directory="libs/" />
 				</Linker>
 			</Target>
 		</Build>
 		<Compiler>
 			<Add option="-Wall" />
-			<Add directory="C:/Projects/Darkhold Engine/headers" />
 		</Compiler>
 		<Unit filename="headers/EmuStream.h" />
 		<Unit filename="headers/MPK2.h" />
@@ -74,6 +75,7 @@
 		<Unit filename="headers/common.h" />
 		<Unit filename="headers/config.h" />
 		<Unit filename="headers/icon.h" />
+		<Unit filename="headers/mio.h" />
 		<Unit filename="headers/screen.h" />
 		<Unit filename="headers/screens/gamemenu.h" />
 		<Unit filename="headers/screens/mainmenu.h" />
@@ -97,6 +99,7 @@
 		<Unit filename="source/billboard.cpp" />
 		<Unit filename="source/config.cpp" />
 		<Unit filename="source/main.cpp" />
+		<Unit filename="source/mio.cpp" />
 		<Unit filename="source/mxmath.cpp" />
 		<Unit filename="source/screen.cpp" />
 		<Unit filename="source/screens/gamemenu.cpp" />
